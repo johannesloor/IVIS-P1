@@ -139,8 +139,8 @@
           .attr("width", radius * 2)
           .attr("height", radius * 2)
           .attr("opacity", 0.8)
-          .on("mouseover", handleMouseOver)
-          .on("mouseout", handleMouseOut)
+          .on("mouseover", mouseOverPie)
+          .on("mouseout", mouseOutPie)
           .append("g")
           .attr("transform", "translate(" + radius + "," + radius + ")");
 
@@ -161,13 +161,14 @@
         svg
           .append("text")
           .attr("dy", ".35em")
-
+          .on("mouseover", mouseOverName)
+          .on("mouseout", mouseOutName)
           .style("text-anchor", "middle")
           .text(function(d) {
             return d.Alias;
           });
         // Create Event Handlers for mouse
-        function handleMouseOver(d, i) {
+        function mouseOverName(d, i) {
           // Add interactivity
           // Use D3 to select element, change color and size
           div
@@ -201,7 +202,18 @@
                 d.Interests
             )
             .style("left", d3.event.pageX + "px")
-            .style("top", d3.event.pageY + "px");
+            .style("top", d3.event.pageY + 15 + "px");
+        }
+
+        function mouseOutName(d, i) {
+          // Use D3 to select element, change color back to normal
+          div
+            .transition()
+            .duration(500)
+            .style("opacity", 0);
+        }
+
+        function mouseOverPie() {
           d3.select(this).attr({
             fill: "orange",
             opacity: 1
@@ -209,12 +221,7 @@
           });
         }
 
-        function handleMouseOut(d, i) {
-          // Use D3 to select element, change color back to normal
-          div
-            .transition()
-            .duration(500)
-            .style("opacity", 0);
+        function mouseOutPie() {
           d3.select(this).attr({
             fill: "black",
             opacity: 0.8
