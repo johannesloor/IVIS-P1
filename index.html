@@ -55,11 +55,11 @@
         .ordinal()
         .range([
           "#98abc5",
-          "#8a89a6",
-          "#7b6888",
-          "#6b486b",
+          "#EBBAB9",
+          "#E7E247",
+          "#CC2936",
           "#a05d56",
-          "#d0743c",
+          "#B5FFE1",
           "#ff8c00"
         ]);
 
@@ -147,7 +147,7 @@
 
           .attr("width", radius * 2)
           .attr("height", radius * 2)
-          .attr("opacity", 0.8)
+          .attr("opacity", 0.7)
           .on("mouseover", mouseOverPie)
           .on("mouseout", mouseOutPie)
 
@@ -180,16 +180,7 @@
           .select("body")
           .append("div")
           .attr("class", "tooltip")
-          .style("opacity", 1);
-        // Create Event Handlers for mouse
-        function mouseOverName(d, i) {
-          // Add interactivity
-          // Use D3 to select element, change color and size
-        }
-
-        function mouseOutName(d, i) {
-          // Use D3 to select element, change color back to normal
-        }
+          .style("opacity", 0.8);
 
         function mouseOverPie(d, i) {
           d3.select(this).attr({
@@ -232,9 +223,7 @@
         function mouseOutPie(d, i) {
           d3.select(this).attr({
             fill: "black",
-            opacity: 0.8
-
-            //r: radius
+            opacity: 0.7
           });
           div.transition().duration(500);
           div.html("");
